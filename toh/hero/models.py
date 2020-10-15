@@ -4,6 +4,10 @@ from django.db.models import CharField, IntegerField, ManyToManyField, ForeignKe
 class Hero(models.Model):
 	name = CharField(max_length=120)
 	age = IntegerField(default=0)
+	score = IntegerField(default=0)
+
+	def introduce(self):
+		return f"Hello, my name is {self.name} and my score is {self.score}!"
 
 	def __str__(self):
 		return f'<Hero name="{self.name}", age={self.age}>'
