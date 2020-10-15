@@ -25,9 +25,13 @@ def hero_list(request):
 
   elif request.method == 'POST':
     try:
+      # Content-Type: application/json
       body = request.body.decode() # Bytes.decode() -> String (Deserializtion)
       hero_name = json.loads(body)['name']
       hero_age = json.loads(body)['age']
+      # Content-Type: multipart/form-data
+      # hero_name = request.POST['name']
+      # hero_age = request.POST['age']
 
     except (KeyError, JSONDecodeError) as e:
       return HttpResponseBadRequest(e)
