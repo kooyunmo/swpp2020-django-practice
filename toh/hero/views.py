@@ -16,7 +16,7 @@ def hero_list(request):
 			return HttpResponseBadRequest()
 		hero = Hero(name=hero_name)
 		hero.save()
-		response_dict = {'id': hero.id, 'name': hero.name}
+		response_dict = {'id': hero.id, 'name': hero.name, 'age': hero.age}
 		return JsonResponse(response_dict, status=201)
 	else:
 		return HttpResponseNotAllowed(['GET', 'POST'])
