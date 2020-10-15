@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from json import JSONDecodeError
 import json
 from .models import Hero
+from django.forms.models import model_to_dict
+
 
 # def index(request):
 #     return HttpResponse('Hello, world!')
@@ -42,7 +44,8 @@ def hero_list(request):
 @csrf_exempt
 def hero_info(request, id=""):
     if request.method == 'GET':
-        hero = [hero for hero in Hero.objects.filter(id=int(id)).values()]
+        hero = Hero.objects.get(id=id)
+        return JsonResponse(model_to_dict(hero), safe=False)
         return JsonResponse(hero, safe=False)
     elif request.method == 'PUT':
         try:
