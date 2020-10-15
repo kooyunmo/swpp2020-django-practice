@@ -9,7 +9,7 @@ class Hero(models.Model):
         return self.name
 
     def introduce(self):
-        return 'Hello, my name is Batman and my score is '+str(self.score)+'!'
+        return 'Hello, my name is '+str(self.name)+' and my score is '+str(self.score)+'!'
 
 class Team(models.Model):
     name = models.CharField(max_length=120)
