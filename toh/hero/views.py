@@ -46,9 +46,10 @@ def hero_info(request, id=""):
                 age = json.loads(body)['age']
         except (KeyError, JSONDecodeError) as e:
             return HttpResponseBadRequest()
-        hero = Hero(name=name, age=age)
-        hero.save()
-        response_dict = {'id': hero.id, 'name':hero.name, 'age':hero.age}
+        hero = Hero.objects.all().filter(id=id)
+        hero.name = name
+        hero.age = age
+        response_dict = {'id': id, 'name':hero.name, 'age':hero.age}
         return JsonResponse(response_dict, status=201)
     else:
         return HttpResponseNotAllowed(['GET', 'PUT'])
