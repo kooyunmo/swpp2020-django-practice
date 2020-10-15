@@ -1,4 +1,4 @@
-from django.http import HttpResponseBadRequest, HttpResponseNotAllowed, JsonResponse
+from django.http import HttpResponseNotFound, HttpResponseBadRequest, HttpResponseNotAllowed, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from .models import Hero
@@ -20,3 +20,30 @@ def hero_list(request):
 		return JsonResponse(response_dict, status=201)
 	else:
 		return HttpResponseNotAllowed(['GET', 'POST'])
+
+@csrf_exempt
+def hero_view(request, id_=0):
+	if request.method == 'GET':
+		q = Hero.objects.filter(id=id_)
+		if not q.exists():
+			return HttpResponseNotFound()
+
+		obj = q.get()
+		return JsonResponse({
+			'id': obj.id,
+			'name': obj.name,
+			'age': obj.age,
+		}, safe=False, status=200)
+
+	if request.method == 'PUT':
+		try:
+			body = request.body.decode()
+			qobj = json.loads(body)
+		except (KeyError, JSONDecodeError) as e:
+			return HttpResponseBadRequest()
+
+		obj = Hero(id=id_, name=qobj['name'], age=qobj['age'])
+		obj.save()
+		return JsonResponse({'id': obj.id, 'name': obj.name, 'age': obj.age}, status=200)
+
+	return HttpResponseNotAllowed(['GET', 'PUT'])
