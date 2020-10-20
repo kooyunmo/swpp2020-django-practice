@@ -45,7 +45,7 @@ def hero_info(request, id=0):
         return JsonResponse(response_dict, status=200)
     
     else:
-        return HttpResponseNotAllowed(['GET', 'POST'])
+        return HttpResponseNotAllowed(['GET', 'PUT'])
 
 def hero_id(request, id=0):
     return HttpResponse(f'Your id is {id}!\n')
