@@ -50,3 +50,6 @@ def hero_info(request, id=0):
 
 def hero_id(request, id=0):
     return HttpResponse(f'Your id is {id}!\n')
+
+def index(request):
+    return HttpResponse('Hello world!\n')
