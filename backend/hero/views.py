@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed, JsonResponse
-from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
+from django.views.decorators.csrf import csrf_exempt
 import json
+from json import JSONDecodeError
 from .models import Hero
 
 
@@ -43,6 +44,6 @@ def hero_info(request, id=0):
         hero.save()
         response_dict = {"id": hero.id, "name": hero.name, "age": hero.age}
         return JsonResponse(response_dict, status=200)
-    
+
     else:
         return HttpResponseNotAllowed(['GET', 'PUT'])
