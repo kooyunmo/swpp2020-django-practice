@@ -49,7 +49,3 @@ def hero_info(request, id=0):
 
 def hero_id(request, id=0):
     return HttpResponse(f'Your id is {id}!\n')
-
-def hero_name(request, name=""):
-    return HttpResponse(f'Your name is {name}!\n')
-
