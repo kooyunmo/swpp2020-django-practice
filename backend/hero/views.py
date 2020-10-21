@@ -4,13 +4,6 @@ import json
 from .models import Hero
 
 
-@ensure_csrf_cookie
-def token(request):
-    if request.method == 'GET':
-        return HttpResponse(status=204)
-    else:
-        return HttpResponseNotAllowed(['GET'])
-
 def hero_list(request):
     if request.method == 'GET':
         hero_all_list = [hero for hero in Hero.objects.all().values()]
@@ -31,7 +24,7 @@ def hero_list(request):
     else:
         return HttpResponseNotAllowed(['GET', 'POST'])
 
-@csrf_exempt
+
 def hero_info(request, id=0):
     if request.method == 'GET':
         hero = Hero.objects.get(id=id)
@@ -52,11 +45,4 @@ def hero_info(request, id=0):
         return JsonResponse(response_dict, status=200)
     
     else:
-        return HttpResponseNotAllowed(['GET', 'POST'])
-
-def hero_id(request, id=0):
-    return HttpResponse(f'Your id is {id}!\n')
-
-def hero_name(request, name=""):
-    return HttpResponse(f'Your name is {name}!\n')
-
+        return HttpResponseNotAllowed(['GET', 'PUT'])
