@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
+from json import JSONDecodeError
 from .models import Hero
 
 @csrf_exempt
