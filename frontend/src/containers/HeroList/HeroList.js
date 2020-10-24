@@ -4,7 +4,7 @@ import Hero from '../../components/Hero/Hero';
 
 import { NavLink } from 'react-router-dom';
 
-//import './HeroList.css';
+import './HeroList.css';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -33,11 +33,13 @@ class HeroList extends Component {
 
     return (
       <div className="HeroList">
-        <div className='name'>
+        <div className='title'>
           {this.props.title}
         </div>
         {heros}
-        <NavLink to='/new-hero' exact>New Hero</NavLink>
+        <div className='button-container'>
+          <NavLink className='new-hero-button' to='/new-hero' exact>New Hero</NavLink>
+        </div>
       </div>
     )
   }

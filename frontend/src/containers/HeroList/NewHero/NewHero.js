@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import CSRFToken from '../../../csrftoken';
 
-//import './NewHero.css';
+import './NewHero.css';
 
 import { connect } from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';

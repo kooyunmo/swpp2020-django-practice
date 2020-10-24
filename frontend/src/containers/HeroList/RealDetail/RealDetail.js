@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-//import './RealDetail.css';
+import './RealDetail.css';
 
 import { connect } from 'react-redux';
 import * as actionCreators from '../../../store/actions/index';
@@ -36,6 +36,10 @@ class RealDetail extends Component {
             {age}
           </div>
         </div>
+        <button className="back-button"
+          onClick={() => this.props.history.push('/heros')}>
+          Back
+        </button>
       </div>
     );
   }

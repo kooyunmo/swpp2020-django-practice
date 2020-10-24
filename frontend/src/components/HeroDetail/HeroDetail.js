@@ -1,6 +1,6 @@
 import React from 'react';
 
-//import './HeroDetail.css';
+import './HeroDetail.css';
 
 class HeroDetail extends React.Component {
   render() {
