@@ -1,10 +1,11 @@
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotAllowed, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import ensure_csrf_cookie
 import json
 from json import JSONDecodeError
 from .models import Hero
 
 
+@ensure_csrf_cookie
 def hero_list(request):
     if request.method == 'GET':
         hero_all_list = [hero for hero in Hero.objects.all().values()]
@@ -26,6 +27,7 @@ def hero_list(request):
         return HttpResponseNotAllowed(['GET', 'POST'])
 
 
+@ensure_csrf_cookie
 def hero_info(request, id=0):
     if request.method == 'GET':
         hero = Hero.objects.get(id=id)

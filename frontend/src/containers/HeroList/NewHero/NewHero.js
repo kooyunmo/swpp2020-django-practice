@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import CSRFToken from '../../../csrftoken';
-
 import './NewHero.css';
 
 import { connect } from 'react-redux';
@@ -20,7 +18,6 @@ class NewHero extends Component {
   render() {
     return (
       <div className="NewHero">
-        <CSRFToken/>
         <h1>Add a New Hero!</h1>
         <label>Name</label>
         <input
